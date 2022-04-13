@@ -13,9 +13,7 @@ import cv2
 
 
 def initialize_model(use_pretrained=True):
-    model = torchvision.models.resnet50(pretrained=use_pretrained)
-    for param in model.parameters():
-        param.requires_grad = False
+    model = torchvision.models.resnet18(pretrained=use_pretrained)
 
     # Parameters of newly constructed modules have requires_grad=True by default
     num_ftrs = model.fc.in_features
@@ -34,7 +32,7 @@ app = Flask(__name__)
 
 drowsiness_class_index = json.load(open('./drowsiness_class_index.json'))
 
-PATH = './models/resnet50_model.pth'
+PATH = './models/resnet18_model.pth'
 model_cnn = initialize_model(use_pretrained=False)
 model_cnn.load_state_dict(torch.load(PATH, map_location=torch.device('cpu')))
 model_cnn.eval()
