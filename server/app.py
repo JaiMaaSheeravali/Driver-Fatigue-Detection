@@ -126,7 +126,7 @@ def predict():
         img_bytes = file.read()
 
         face = extract_face(img_bytes)
-        cv2.imwrite(file.filename, face)
+        # cv2.imwrite(file.filename, face)
 
         probability, class_name = get_prediction(image=face)
         return jsonify({'probability': probability, 'class_name': class_name})
